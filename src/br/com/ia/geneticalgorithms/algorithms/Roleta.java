@@ -10,36 +10,36 @@ import java.util.stream.Collectors;
 public class Roleta {
 	
 	private double tamanho;
-	private List<Individuo> list;
-	private List<Frac> fractions;
+	private List<Individuo> lista;
+	private List<Frac> fracao;
 	private Random random;
-	private double partition;
+	private double parte;
 	
 	
-	private void setFractions(List<Individuo> individuals) {
+	private void setfracao(List<Individuo> individuals) {
 		individuals
 		.stream()
-		.forEach(x -> fractions.add(new Frac(x)));
+		.forEach(x -> fracao.add(new Frac(x)));
 
-		setPartitionValues();
+		setparteValues();
 	}	
 	
-	private void setPartitionValues() {
-		fractions
+	private void setparteValues() {
+		fracao
 		.stream()
 		.map(x -> {
-			double operation = (partition * x.getindividuo().getFitness())/tamanho;
+			double operation = (parte * x.getindividuo().getFitness())/tamanho;
 			x.setparte(operation);
 			return x;
 		})
 		.forEach(x -> x.getClass());
 
-		revertPartitionValues();
+		revertparteValues();
 	}
 
-	private void revertPartitionValues() {
+	private void revertparteValues() {
 		Object[] aux  = 
-				fractions.stream()
+				fracao.stream()
 				.mapToDouble(x -> x.getparte())
 				.boxed()
 				.sorted((x1, x2) -> Double.compare(x2, x1))
@@ -52,36 +52,36 @@ public class Roleta {
 
 		for (int i = 0; i < aux.length; i++) {
 			d = Double.parseDouble(String.valueOf(aux[i]));
-			fractions.get(i).setparte(d);
+			fracao.get(i).setparte(d);
 		}		
 	}
 	
 	private void removeOfRoulette(List<Frac> aux, int i) {
-		Frac f = fractions.remove(i);
-		fractions = new ArrayList<>();
-		list.remove(f.getindividuo());
+		Frac f = fracao.remove(i);
+		fracao = new ArrayList<>();
+		lista.remove(f.getindividuo());
 		aux.add(f);
-		setLists(list);
+		setLists(lista);
 	}	
 	
 	private void setLists(List<Individuo> list) {
-		this.list = list;
+		this.lista = list;
 		this.tamanho = list.stream()
 				.mapToDouble(x -> x.getFitness()).sum();
-		setFractions(list);
+		setfracao(list);
 	}
 	
 	
-	public Roleta(List<Individuo> list) {
-		this.fractions = new ArrayList<Frac>();
+	public Roleta(List<Individuo> lista) {
+		this.fracao = new ArrayList<Frac>();
 		this.random = new Random();
-		this.partition = 100;
+		this.parte = 100;
 
-		list = list
+		lista = lista
 				.stream()
 				.sorted((x1, x2) -> Double.compare(x1.getFitness(), x2.getFitness()))
 				.collect(Collectors.toList());
-		setLists(list);
+		setLists(lista);
 	}
 	
 	
@@ -91,8 +91,8 @@ public class Roleta {
 		double s = 0;
 		double r = 100 * this.random.nextDouble();
 
-		for (int i = 0; i < list.size(); i++) {
-			s += fractions.get(i).getparte();
+		for (int i = 0; i < lista.size(); i++) {
+			s += fracao.get(i).getparte();
 			if(s >= r) {
 				removeOfRoulette(aux, i);
 				i = -1;
@@ -103,9 +103,9 @@ public class Roleta {
 
 		aux
 		.stream()
-		.forEach(x -> list.add(x.getindividuo()));
+		.forEach(x -> lista.add(x.getindividuo()));
 
-		return list;
+		return lista;
 	}
 	
 
