@@ -1,4 +1,4 @@
-package br.com.ia.geneticalgorithms.função;
+package br.com.ia.geneticalgorithms.funcao;
 
 import br.com.ia.geneticalgorithms.entity.Individuo;
 

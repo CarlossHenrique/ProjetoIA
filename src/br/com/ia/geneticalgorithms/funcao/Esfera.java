@@ -1,4 +1,4 @@
-package br.com.ia.geneticalgorithms.função;
+package br.com.ia.geneticalgorithms.funcao;
 
 public class Esfera implements Fun {
 

@@ -1,6 +1,7 @@
 package br.com.ia.geneticalgorithms.algorithms;
 import br.com.ia.geneticalgorithms.entity.Individuo;
-import br.com.ia.geneticalgorithms.função.Frac;
+import br.com.ia.geneticalgorithms.funcao.Frac;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;

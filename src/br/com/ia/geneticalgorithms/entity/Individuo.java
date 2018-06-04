@@ -2,7 +2,7 @@ package br.com.ia.geneticalgorithms.entity;
 
 import java.util.Random;
 import br.com.ia.geneticalgorithms.algorithms.Algoritimo;
-import br.com.ia.geneticalgorithms.função.Fun;
+import br.com.ia.geneticalgorithms.funcao.Fun;
 import br.com.ia.geneticalgorithms.util.ValorDados;
 
 public class Individuo {

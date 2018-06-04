@@ -2,7 +2,7 @@ package br.com.ia.geneticalgorithms.util;
 
 import java.util.Random;
 
-import br.com.ia.geneticalgorithms.função.Fun;
+import br.com.ia.geneticalgorithms.funcao.Fun;
 
 public class ValorDados {
 
