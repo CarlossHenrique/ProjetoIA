@@ -7,7 +7,7 @@ public class Geneticalgorithms {
     public void executar(String frase, double taxaDeCrossover, double taxaDeMutacao) {
 
         Algoritimo.setSolucao(frase);
-        Algoritimo.setCaracteres("!,.:;?·¡„√‚¬ı’Ù‘Û”ÈÍ… ÌQWERTYUIOPASDFGHJKL«ZXCVBNMqwertyuiopasdfghjklÁzxcvbnm1234567890 ");
+        Algoritimo.setCaracteres("1234567890");
         Algoritimo.setTaxaDeCrossover(taxaDeCrossover);
         Algoritimo.setTaxaDeMutacao(taxaDeMutacao);
         boolean eltismo = true;
