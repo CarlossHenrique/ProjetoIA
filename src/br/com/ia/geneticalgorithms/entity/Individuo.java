@@ -1,8 +1,6 @@
 package br.com.ia.geneticalgorithms.entity;
 
 import java.util.Random;
-import java.util.function.Function;
-
 import br.com.ia.geneticalgorithms.algorithms.Algoritimo;
 import br.com.ia.geneticalgorithms.função.Fun;
 import br.com.ia.geneticalgorithms.util.ValorDados;
@@ -55,20 +53,20 @@ public class Individuo {
     public Individuo(Fun function, double[] array) {
 		this.chromosome = new double[20];
 		this.function = function;
-		inicializateChromosome();
-		inicializateFitness();
+		inicializarChromossomo();
+		inicializarFitness();
 		idade = 0;
 		chromosome = array;
 	}
     
-	private void inicializateChromosome() {
+	private void inicializarChromossomo() {
 		for (int i = 0; i < chromosome.length; i++) {
 			chromosome[i] = ValorDados.inicialValue(this.function);			
 		}	
 	}
 
 	
-	private void inicializateFitness() {
+	private void inicializarFitness() {
 		for(double d : chromosome) {
 			fitness += Math.pow(d, 2);
 		}		
