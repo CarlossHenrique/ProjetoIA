@@ -1,107 +1,47 @@
 package br.com.ia.geneticalgorithms.entity;
 
-import java.util.Random;
-import br.com.ia.geneticalgorithms.algorithms.Algoritimo;
 import br.com.ia.geneticalgorithms.funcao.Fun;
 import br.com.ia.geneticalgorithms.util.ValorDados;
 
 public class Individuo {
 
-	
-	private double[] chromosome;
-	private double fitness;
+	private double[] cromossomo;
+	private int fitness;
 	private int idade;
-	private Fun function;
-    private String genes = "";
-    private int aptidao = 0;
+	private Fun funcao;
 
-    public Individuo(int numGenes) {
-        genes = "";
-        Random r = new Random();
-        
-        String caracteres = Algoritimo.getCaracteres();
-        
-        for (int i = 0; i < numGenes; i++) {
-            genes += caracteres.charAt(r.nextInt(caracteres.length()));
-        }
-        
-        geraAptidao();        
-    }
-
-    public Individuo(String genes) {    
-        this.genes = genes;
-        
-        Random r = new Random();
-        if (r.nextDouble() <= Algoritimo.getTaxaDeMutacao()) {
-            String caracteres = Algoritimo.getCaracteres();
-            String geneNovo="";
-            int posAleatoria = r.nextInt(genes.length());
-            for (int i = 0; i < genes.length(); i++) {
-                if (i==posAleatoria){
-                    geneNovo += caracteres.charAt(r.nextInt(caracteres.length()));
-                }else{
-                    geneNovo += genes.charAt(i);
-                }
-                
-            }
-            this.genes = geneNovo;   
-        }
-        geraAptidao();
-    }
-    
-    
-    public Individuo(Fun function, double[] array) {
-		this.chromosome = new double[20];
-		this.function = function;
+	public Individuo(Fun funcao) {
+		this.funcao = funcao;
 		inicializarChromossomo();
 		inicializarFitness();
 		idade = 0;
-		chromosome = array;
 	}
-    
+
 	private void inicializarChromossomo() {
-		for (int i = 0; i < chromosome.length; i++) {
-			chromosome[i] = ValorDados.inicialValue(this.function);			
-		}	
+		for (int i = 0; i < cromossomo.length; i++) {
+			cromossomo[i] = ValorDados.inicialValue(this.funcao);
+		}
 	}
 
-	
 	private void inicializarFitness() {
-		for(double d : chromosome) {
+		for (double d : cromossomo) {
 			fitness += Math.pow(d, 2);
-		}		
+		}
 	}
-
-    private void geraAptidao() {
-        String solucao = Algoritimo.getSolucao();
-        for (int i = 0; i < solucao.length(); i++) {
-            if (solucao.charAt(i) == genes.charAt(i)) {
-                aptidao++;
-            }
-        }
-    }
-
-    public int getAptidao() {
-        return aptidao;
-    }
-
-    public String getGenes() {
-        return genes;
-    }
 
 	public double[] getChromosome() {
-		return chromosome;
+		return cromossomo;
 	}
 
 	public void setChromosome(double[] chromosome) {
-		this.chromosome = chromosome;
+		this.cromossomo = chromosome;
 	}
 
-	public double getFitness() {
+	public int getFitness() {
 		return fitness;
 	}
 
-	public void setFitness(double fitness) {
+	public void setFitness(int fitness) {
 		this.fitness = fitness;
 	}
 
@@ -112,15 +52,4 @@ public class Individuo {
 	public void setidade(int idade) {
 		this.idade = idade;
 	}
-
-	
-	public void setGenes(String genes) {
-		this.genes = genes;
-	}
-
-	public void setAptidao(int aptidao) {
-		this.aptidao = aptidao;
-	}
-    
-    
 }

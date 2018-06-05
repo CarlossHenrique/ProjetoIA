@@ -1,24 +1,24 @@
 package br.com.ia.geneticalgorithms.funcao;
 
-public class Esfera implements Fun {
+public class Esfera implements Funcoes {
 
 	@Override
-	public int initialMax() {
+	public int maximoIncial() {
 		return 100;
 	}
 
 	@Override
-	public int initialMin() {
+	public int minimoInicial() {
 		return 50;
 	}
 
 	@Override
-	public int executionMax() {
+	public int execucaoMaxima() {
 		return 100;
 	}
 
 	@Override
-	public int executionMin() {
+	public int execucaoMinima() {
 		return -100;
 	}
 
