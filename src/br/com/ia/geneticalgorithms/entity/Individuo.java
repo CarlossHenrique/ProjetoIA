@@ -1,6 +1,6 @@
 package br.com.ia.geneticalgorithms.entity;
 
-import br.com.ia.geneticalgorithms.funcao.Fun;
+import br.com.ia.geneticalgorithms.funcao.Funcoes;
 import br.com.ia.geneticalgorithms.util.ValorDados;
 
 public class Individuo {
@@ -8,33 +8,58 @@ public class Individuo {
 	private double[] cromossomo;
 	private int fitness;
 	private int idade;
-	private Fun funcao;
+	private Funcoes funcao;
 
-	public Individuo(Fun funcao) {
+	public Individuo(Funcoes funcao) {
+	
+		this.cromossomo = new double[20];
 		this.funcao = funcao;
-		inicializarChromossomo();
-		inicializarFitness();
+		iniciarCromossomo();
+		iniciarFitness();
 		idade = 0;
+		
 	}
+	
+	public Individuo(Individuo individuo) {
+				setValorIndividuo(individuo);
+				normaliarCromossomo();
+	}
+	
 
-	private void inicializarChromossomo() {
+		
+	private void setValorIndividuo(Individuo individuo) {
+		this.cromossomo = individuo.cromossomo;
+		this.fitness = individuo.fitness;
+		this.idade = individuo.idade;
+		this.funcao = individuo.funcao;		
+	}
+	
+		
+	private void iniciarCromossomo() {
 		for (int i = 0; i < cromossomo.length; i++) {
-			cromossomo[i] = ValorDados.inicialValue(this.funcao);
+			cromossomo[i] = ValorDados.inicialValue(funcao);
 		}
 	}
 
-	private void inicializarFitness() {
+	private void iniciarFitness() {
 		for (double d : cromossomo) {
-			fitness += Math.pow(d, 2);
+			fitness += Math.pow( d, 2);
 		}
 	}
 
-	public double[] getChromosome() {
+	private void normaliarCromossomo() {
+		for (int i = 0; i < cromossomo.length; i++) {
+			cromossomo[i] = ValorDados.normalizar(cromossomo[i], funcao);
+		}
+	}
+	
+	
+	public double[] getCromossomo() {
 		return cromossomo;
 	}
 
-	public void setChromosome(double[] chromosome) {
-		this.cromossomo = chromosome;
+	public void setCromossomo(double[] cromossomo) {
+		this.cromossomo = cromossomo;
 	}
 
 	public int getFitness() {

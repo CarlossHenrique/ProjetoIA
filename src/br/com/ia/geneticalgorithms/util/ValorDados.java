@@ -5,7 +5,7 @@ import br.com.ia.geneticalgorithms.funcao.Funcoes;
 
 public class ValorDados {
 
-	private static double normalizar(double value, Funcoes f) {
+	public static double normalizar(double value, Funcoes f) {
 		return f.minimoInicial() + 
 				(value * (f.maximoIncial() - f.minimoInicial()));
 	
